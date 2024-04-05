@@ -650,3 +650,17 @@ function copyText() {
     );
 }
 
+const addSeparator = document.getElementById("separatorBtn");
+const chooseInput = document.getElementById("separatorInput");
+addSeparator.addEventListener("click", function() {
+    chooseInput.classList.remove("hide");
+    chooseInput.style.display = "flex";
+    addSeparator.classList.add("hide");
+});
+
+const xMark = document.getElementById("closeXmark");
+xMark.addEventListener("click", function(){
+    addSeparator.classList.remove("hide");
+    chooseInput.style.display = "none";
+});
+

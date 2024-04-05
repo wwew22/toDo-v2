@@ -47,7 +47,12 @@
             </div>
         </div>
             <div class="left-container">
-                <input class="howToBreak" type="text" id="separatorInput" placeholder="Enter separator">
+                <button class="button1 separatorBtn" id="separatorBtn">Add separator</button>
+                <span id="separatorInput" class="spanSeparator hide">
+                    <input class="howToBreak" type="text" id="separatorIpt" placeholder="Enter separator">
+                    <i class="fa-solid fa-xmark" id="closeXmark"></i>
+                </span>
+                
               
               <textarea id="inputText" class="textarea" placeholder="Enter text here..."></textarea>
               <button class="button1" id="splitBtn">Split Text</button>

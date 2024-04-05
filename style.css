@@ -436,6 +436,7 @@ option {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
   }
+
   
   .copy-button {
     background-color: #0ffee661;
@@ -454,13 +455,34 @@ option {
     width: 100%;
   }
 
-.left-container input[type="text"] {
+  .left-container input[type="text"] {
     border-radius: .3rem;
+  }
+
+  .spanSeparator {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .fa-xmark {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    transition: all 300ms ease;
+    cursor: pointer;
+  }
+
+  .fa-xmark:hover {
+    transform: scale(1.5);
   }
 
 
 
 @media only screen and (max-width: 686px) {
+
+    .separatorBtn {
+        font-size: 1.1rem;
+      }
 
     .wrapAll {
         flex-direction: column;
