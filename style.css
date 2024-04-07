@@ -440,8 +440,14 @@ option {
     width: 150px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    transition: all 300ms ease;
   }
 
+  .button1:hover,
+  .button2:hover {
+    background: #335C67;
+    color: white;
+}
   
   .copy-button {
     background-color: #0ffee661;
