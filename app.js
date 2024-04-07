@@ -638,11 +638,11 @@ function copyText() {
             let listItems = document.querySelectorAll(".countedLi").length;
             rightContainer.innerHTML = listItems;
             //console.log(listItems)
-            /*
+           
             setTimeout(function() {
                 alertBox.style.display = "none";
             }, 15000);
-            */
+            
         },
         function() {
             alert("Copy failed. Please try again.");
