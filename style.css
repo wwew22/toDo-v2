@@ -487,11 +487,18 @@ option {
     transform: scale(1.5);
   }
 
+  #inputText {
+    max-width: 9.5rem;
+  }
 
 
 
 
 @media only screen and (max-width: 686px) {
+
+    #inputText {
+        max-width: 70%;
+      }
 
     .separatorBtn {
         font-size: 1.1rem;
