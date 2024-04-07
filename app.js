@@ -580,7 +580,7 @@ splitBtn.addEventListener("click", function() {
     const inputTextElement = document.getElementById("inputText"); // Get the input element
     const inputText = inputTextElement.value.trim(); // Moved inside the event listener and trimmed
     
-    const separatorInput = document.getElementById("separatorInput").value.trim(); // Get the separator input
+    const separatorInput = document.getElementById("separatorIpt").value.trim(); // Get the separator input
     let separator;
     if (separatorInput !== "") {
         if (separatorInput === "()") {
@@ -652,15 +652,18 @@ function copyText() {
 
 const addSeparator = document.getElementById("separatorBtn");
 const chooseInput = document.getElementById("separatorInput");
+
 addSeparator.addEventListener("click", function() {
     chooseInput.classList.remove("hide");
     chooseInput.style.display = "flex";
     addSeparator.classList.add("hide");
 });
 
+const separatorInput = document.getElementById("separatorIpt");
 const xMark = document.getElementById("closeXmark");
+
 xMark.addEventListener("click", function(){
     addSeparator.classList.remove("hide");
     chooseInput.style.display = "none";
+    separatorInput.value = "";
 });
-

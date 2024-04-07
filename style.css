@@ -345,6 +345,11 @@ option {
     box-shadow: 0 2px 8px #161616;
     background-color: white;
     color: #475657;
+    text-align: center;
+}
+
+.countedLi {
+    margin-left: .5rem;
 }
 
 .wrapAll {
