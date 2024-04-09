@@ -455,7 +455,7 @@ option {
   
   .alert {
     display: none;
-    padding: 0rem;
+    padding: 10px 20px;
     font-size: 1.1rem;
     font-weight: 100;
     line-height: 1.3rem;
