@@ -240,8 +240,8 @@ form button:hover {
 
 .fa-trash,
 .fa-cloud-arrow-up,
-.fa-square-check,
-.fa-file-code {
+.fa-comments,
+.fa-spinner {
     pointer-events: none;
 }
 
@@ -345,11 +345,6 @@ option {
     box-shadow: 0 2px 8px #161616;
     background-color: white;
     color: #475657;
-    text-align: center;
-}
-
-.countedLi {
-    margin-left: .5rem;
 }
 
 .wrapAll {
@@ -440,14 +435,8 @@ option {
     width: 150px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    transition: all 300ms ease;
   }
 
-  .button1:hover,
-  .button2:hover {
-    background: #335C67;
-    color: white;
-}
   
   .copy-button {
     background-color: #0ffee661;
@@ -455,7 +444,7 @@ option {
   
   .alert {
     display: none;
-    padding: 10px 20px;
+    padding: 0rem;
     font-size: 1.1rem;
     font-weight: 100;
     line-height: 1.3rem;
@@ -487,18 +476,9 @@ option {
     transform: scale(1.5);
   }
 
-  #inputText {
-    max-width: 9.5rem;
-  }
-
-
 
 
 @media only screen and (max-width: 686px) {
-
-    #inputText {
-        max-width: 70%;
-      }
 
     .separatorBtn {
         font-size: 1.1rem;
@@ -532,21 +512,14 @@ option {
     justify-content: center;
     align-items: center;
     text-align: center;
-  }
+    }
 
     .trash-btn:hover, 
     .complete-btn:hover, 
     .jira-btn:hover, 
     .html-btn:hover {
     transform: none;
-}
-    .trash-btn:active, 
-    .complete-btn:active, 
-    .jira-btn:active, 
-    .html-btn:active {
-    transform: scale(-10%);
-    -webkit-transform: scale(-10%);
-} 
+    }
 }
 
 @media only screen 
@@ -559,12 +532,6 @@ option {
         .html-btn:hover {
         transform: none;
     }
-        .trash-btn:active, 
-        .complete-btn:active, 
-        .jira-btn:active, 
-        .html-btn:active {
-        transform: scale(-10%);
-        -webkit-transform: scale(-10%); 
-    } 
-    }
+
+}
 
