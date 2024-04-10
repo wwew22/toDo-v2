@@ -55,10 +55,27 @@ todoButtonFriday.addEventListener("click", function(event) {
 });
 
 document.addEventListener("click", function(e) {
+    if (e.target.classList.contains('html-btn')) {
+        const spinner = e.target.parentElement.querySelector(".fa-spinner");
+        const todo = e.target.parentElement;
+        const day = getDayFromTodoList(todo.parentNode);
+        updateJiraButtonColor(todo, day);
+        spinner.classList.toggle("fa-spin");
+
+        const isSpinning = spinner.classList.contains("fa-spin");
+        localStorage.setItem(`${day}_spinnerState`, isSpinning.toString());
+    }
+});
+
+document.addEventListener("click", function(e) {
     if (e.target.classList.contains('complete-btn')) {
         const todo = e.target.parentElement;
         const day = getDayFromTodoList(todo.parentNode);
         updateHtmlButtonColor(todo, day);
+
+        const spinner = e.target.parentElement.querySelector(".fa-spinner");
+        spinner.classList.remove("fa-spin");
+        todo.classList.remove("htmlDone")
     }
 });
 
@@ -67,6 +84,10 @@ document.addEventListener("click", function(e) {
         const todo = e.target.parentElement;
         const day = getDayFromTodoList(todo.parentNode);
         updateJiraButtonColor(todo, day);
+
+        const spinner = e.target.parentElement.querySelector(".fa-spinner");
+        spinner.classList.remove("fa-spin");
+        todo.classList.remove("htmlDone")
     }
 });
 
@@ -87,12 +108,14 @@ for (let i = 1; i <= 5; i++) {
         daySpan.textContent = formattedDate;
     }
 }
+
 // Load tasks from local storage and populate the task lists
 function loadTasksFromLocalStorage(day, taskList) {
     const tasks = JSON.parse(localStorage.getItem(day)) || [];
     const doneUpTasks = JSON.parse(localStorage.getItem(`${day}_doneUp`)) || [];
     const completedTasks = JSON.parse(localStorage.getItem(`${day}_completed`)) || [];
     const htmlDoneTasks = JSON.parse(localStorage.getItem(`${day}_htmlDone`)) || [];
+    const spinnerState = localStorage.getItem(`${day}_spinnerState`) === 'true';
 
     tasks.forEach(task => {
         const todoDiv = document.createElement('div');
@@ -104,12 +127,15 @@ function loadTasksFromLocalStorage(day, taskList) {
         todoDiv.appendChild(newTodo);
 
         const htmlButton = document.createElement('button');
-        htmlButton.innerHTML = '<i class="fa-regular fa-file-code fa-xl"></i>';
+        htmlButton.innerHTML = '<i class="fa-solid fa-spinner fa-lg"></i>';
         htmlButton.classList.add('html-btn');
+        if (spinnerState) {
+            htmlButton.querySelector('i').classList.add('fa-spin');
+        }
         todoDiv.appendChild(htmlButton);
 
         const completedButton = document.createElement('button');
-        completedButton.innerHTML = '<i class="fa-regular fa-square-check fa-xl"></i>';
+        completedButton.innerHTML = '<i class="fas fa-comments fa-lg"></i>';
         completedButton.classList.add('complete-btn');
         todoDiv.appendChild(completedButton);
 
@@ -129,11 +155,17 @@ function loadTasksFromLocalStorage(day, taskList) {
 
         if (doneUpTasks.includes(task)) {
             todoDiv.classList.add('doneUp');
+            todoDiv.classList.remove('htmlDone');
+            htmlButton.querySelector('i').classList.remove('fa-spin');
         }
         
         if (completedTasks.includes(task)) {
             todoDiv.classList.add('completed');
+            todoDiv.classList.remove('htmlDone');
+            todoDiv.classList.remove('doneUp');
+            htmlButton.querySelector('i').classList.remove('fa-spin');
         }
+        
 
         updateHtmlButtonColor(todoDiv, day);
         updateJiraButtonColor(todoDiv, day);
@@ -146,6 +178,8 @@ loadTasksFromLocalStorage('tuesday', todoListTuesday);
 loadTasksFromLocalStorage('wednesday', todoListWednesday);
 loadTasksFromLocalStorage('thursday', todoListThursday);
 loadTasksFromLocalStorage('friday', todoListFriday);
+
+
 
 //ADD TODO
 function addTodo(event, day, inputField, taskList) {
@@ -166,12 +200,12 @@ function addTodo(event, day, inputField, taskList) {
     todoDiv.appendChild(newTodo);
 
     const htmlButton = document.createElement('button');
-    htmlButton.innerHTML = '<i class="fa-regular fa-file-code fa-xl"></i>';
+    htmlButton.innerHTML = '<i class="fa-solid fa-spinner fa-lg"></i>';
     htmlButton.classList.add('html-btn');
     todoDiv.appendChild(htmlButton);
 
     const completedButton = document.createElement('button');
-    completedButton.innerHTML = '<i class="fa-regular fa-square-check fa-xl"></i>';
+    completedButton.innerHTML = '<i class="fas fa-comments fa-lg"></i>';
     completedButton.classList.add('complete-btn');
     todoDiv.appendChild(completedButton);
 
@@ -212,6 +246,13 @@ function deleteCheck(e) {
             const existingTasks = JSON.parse(localStorage.getItem(day)) || [];
             const updatedTasks = existingTasks.filter(task => task !== todoText);
             saveTasksToLocalStorage(day, updatedTasks);
+
+            // Remove classes associated with the todo item from local storage
+            localStorage.removeItem(`${day}_doneUp`);
+            localStorage.removeItem(`${day}_completed`);
+            localStorage.removeItem(`${day}_htmlDone`);
+            localStorage.removeItem(`${day}_spinnerState`);
+
 
             todo.remove();
         });
@@ -571,7 +612,6 @@ function filterTodo(e) {
 function saveTasksToLocalStorage(day, tasks) {
     localStorage.setItem(day, JSON.stringify(tasks));
 }
-
 
 
 //SPLIT WORDS
