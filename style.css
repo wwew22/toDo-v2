@@ -476,6 +476,10 @@ option {
     transform: scale(1.5);
   }
 
+  #inputText{
+    max-width: 9.5rem;
+  }
+
 
 
 @media only screen and (max-width: 686px) {
@@ -505,6 +509,11 @@ option {
     .alert {
         width: 70%;
     }
+
+    #inputText{
+        max-width: 70%;
+        min-width: 70%;
+      }
 
     .wrapAll,
     .left-container, 

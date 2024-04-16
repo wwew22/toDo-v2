@@ -298,9 +298,10 @@ function deleteCheck(e) {
                 doneUpTasks.splice(index, 1);
             }
         }
-
+        /*
         localStorage.removeItem(`${day}_htmlDone`);
         localStorage.removeItem(`${day}_spinnerState`);
+        */
         localStorage.setItem(`${day}_doneUp`, JSON.stringify(doneUpTasks));
         
     }
@@ -322,10 +323,11 @@ function deleteCheck(e) {
                 completedTasks.splice(index, 1);
             }
         }
-
+        /*
         localStorage.removeItem(`${day}_htmlDone`);
         localStorage.removeItem(`${day}_doneUp`);
         localStorage.removeItem(`${day}_spinnerState`);
+        */
         localStorage.setItem(`${day}_completed`, JSON.stringify(completedTasks));
     }
 }
